@@ -86,7 +86,7 @@ class NewFeatureCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return 1
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -105,7 +105,11 @@ class NewFeatureCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    
+    //Cell的点击事件
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        
+    }
  
 
 }
@@ -157,8 +161,7 @@ class NewFeatureCell:UICollectionViewCell
         super.init(frame: frame)
         
         setup()
-        
-        self.backgroundColor = UIColor.purpleColor()
+         
     }
     
     required init?(coder aDecoder: NSCoder) {
