@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UITabBarController,UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,20 +16,32 @@ class MainViewController: UIViewController {
         
     }
 
+    func setup()
+    {
+       tabBar.tintColor = UIColor.blackColor()
+    
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    ///为主页添加子控件
+    private func addViewController(childController:UIViewController,title:String)
+    {
+       
+       let nav = NavgationViewController(rootViewController: childController)
+       self.addChildViewController(nav)
+        
+       childController.tabBarItem.title = title
+       childController.tabBarItem.image = UIImage(named: "tb_\(childViewControllers.count - 1)")
+       
+       childController.tabBarItem.selectedImage = UIImage(named: "tb_\(childViewControllers.count - 1)" + "_selected")
+        
+        //方便点击判断 设置 Tag
+       childController.tabBarItem.tag = childViewControllers.count - 1
+        
     }
-    */
-
+   
 }

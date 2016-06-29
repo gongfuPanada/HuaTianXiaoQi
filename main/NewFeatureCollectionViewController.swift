@@ -86,7 +86,7 @@ class NewFeatureCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1
+        return imageNames.count ?? 0
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -108,10 +108,36 @@ class NewFeatureCollectionViewController: UICollectionViewController {
     //Cell的点击事件
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        //如果在最后一张图的格子上发生了点击事件
+        if  indexPath.row == imageNames.count - 1
+        {
+           //阅读完新特性,跳转到主场景
+           keyWindow.rootViewController = MainViewController()
+        }
+    
         
     }
- 
-
+  
+    
+    override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        
+        let currentPage = Int(scrollView.contentOffset.x / self.view.bounds.width + 0)
+        pageControl.currentPage = currentPage
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+       
+       //当滑到最后一张图片的 一半的时候 就隐藏 pageController
+       if scrollView.contentOffset.x / self.view.bounds.width > (CGFloat(imageNames.count) - 1.5)
+       {
+          pageControl.hidden = true
+       }
+        else
+       {
+          pageControl.hidden = false
+        }
+    
+    }
 }
 
 
