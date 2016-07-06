@@ -10,19 +10,7 @@ import UIKit
 
 ///自己重写的导航控制器
 class NavgationViewController: UINavigationController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
+     
     override func pushViewController(viewController: UIViewController, animated: Bool) {
         
         if childViewControllers.count > 0
@@ -31,6 +19,10 @@ class NavgationViewController: UINavigationController {
             
             viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .Done, target: self, action: #selector(self.back))
         }
+        
+        ///由于粗心大意忘记写了这句代码 结果程序一直不对
+        //记住以后重写系统类的时候一定要调用基本的构造方法 我擦擦擦!!!
+         super.pushViewController(viewController, animated: true)
     }
 
     //重写Back方法
@@ -38,14 +30,5 @@ class NavgationViewController: UINavigationController {
     {
        popViewControllerAnimated(true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

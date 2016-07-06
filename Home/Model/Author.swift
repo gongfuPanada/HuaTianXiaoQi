@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// 作者数据模型
 class Author: NSObject {
@@ -46,13 +47,35 @@ class Author: NSObject {
          
             switch newAuth {
             case 1:
-                
+                authImage = UIImage(named: "u_vip_yellow")
+            case 2:
+                authImage = UIImage(named: "personAuth")
             default:
-                <#code#>
+                authImage = UIImage(named: "u_vip_blue")
             }
         }
     }
+    ///认证等级对应的图片
+    var  authImage: UIImage?
+    // 经验值
+    var experience : Int = 0
+    // 等级
+    var level : Int = 1
+    // 积分
+    var integral : Int = 0
     
+    
+    
+    ///构造函数  直接用字典来初始化
+    init(dict:[String: AnyObject]){
+       super.init()
+        setValuesForKeysWithDictionary(dict)
+      }
+    
+    
+    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+        
+    }
     
     
     

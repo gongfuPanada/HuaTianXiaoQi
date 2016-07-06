@@ -13,13 +13,16 @@ class MainViewController: UITabBarController,UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        setup()
     }
 
     func setup()
     {
-       tabBar.tintColor = UIColor.blackColor()
-    
+        tabBar.tintColor = UIColor.blackColor()
+       //添加home
+      // NSLocalizedString  简单的本地化 返回本地字符串 如果没有指定 返回主包
+       addViewController(HomeTableViewController(), title: NSLocalizedString("tab_theme", comment: ""))
+        
     }
     
     
@@ -30,9 +33,9 @@ class MainViewController: UITabBarController,UITabBarControllerDelegate {
     ///为主页添加子控件
     private func addViewController(childController:UIViewController,title:String)
     {
-       
-       let nav = NavgationViewController(rootViewController: childController)
-       self.addChildViewController(nav)
+       let nav = UINavigationController(rootViewController: childController)
+      
+        addChildViewController(nav)
         
        childController.tabBarItem.title = title
        childController.tabBarItem.image = UIImage(named: "tb_\(childViewControllers.count - 1)")
