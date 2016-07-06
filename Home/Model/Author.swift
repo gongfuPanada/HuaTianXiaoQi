@@ -55,7 +55,7 @@ class Author: NSObject {
             }
         }
     }
-    ///认证等级对应的图片
+    ///认证等级对应的图片  已做处理 当数据改变的时候会根据返回的String找到对应的图片
     var  authImage: UIImage?
     // 经验值
     var experience : Int = 0

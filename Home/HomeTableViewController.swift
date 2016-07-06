@@ -67,7 +67,7 @@ class HomeTableViewController: UITableViewController,BlurViewDelegate{
     // 如果使用addTarget, 且是private修饰的, 就需要告诉编辑器, 我这个方法是objc的, 属于动态加载
     
     @objc private func selectedCategory(btn: UIButton) {
-        print("点击了按钮")
+       
         btn.selected = !btn.selected
         // 如果是需要显示菜单, 先设置transform, 然后再动画取消, 就有一上一下的动画
         if btn.selected {
@@ -101,6 +101,7 @@ class HomeTableViewController: UITableViewController,BlurViewDelegate{
                 self.tableView.scrollEnabled = false
                 
             }else{
+                
                 btn.transform = CGAffineTransformIdentity
                 self.blurView.transform = CGAffineTransformMakeTranslation(0, -ScreenHeight)
                 self.tableView.scrollEnabled = true
@@ -132,6 +133,7 @@ class HomeTableViewController: UITableViewController,BlurViewDelegate{
 	{
 		// 设置左右Item
 		navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuBtn)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "TOP", style: .Plain, target: self, action: #selector(toTopAction))
         
         
         
@@ -152,7 +154,9 @@ class HomeTableViewController: UITableViewController,BlurViewDelegate{
         tableView.separatorStyle = .None
         tableView.tableFooterView = UIView()
         
-         getList()
+        getList()
+        
+        getCategories()
 
 	}
 
@@ -217,7 +221,6 @@ class HomeTableViewController: UITableViewController,BlurViewDelegate{
     //MARK:  获取主页的列表 请求数据
 	func getList()
 	{
-        ALinLog("获取数据")
 		// 如果正在刷新
 		if refreshControl!.refreshing
 		{
@@ -262,6 +265,8 @@ class HomeTableViewController: UITableViewController,BlurViewDelegate{
 				}
               //刷新数据
               self.tableView.reloadData()
+                
+                print("文章加载完成")
 
 			} else {
                 
@@ -285,6 +290,40 @@ class HomeTableViewController: UITableViewController,BlurViewDelegate{
     }
          
 
+    ///获取类别
+    
+    //todo 为什么在获取类别的时候要先从本地去一下 然后在进行网络获取 这是为什么?
+    private func  getCategories(){
+    
+        //获取本地保存的
+        if let array = Category.loadLocalCategories(){
+        
+            self.categories = array
+        }
+        
+        // 读取网络的Category
+        
+        NetworkTool.sharedTools.getCategories { (categoies, error) in
+            
+            if error == nil{
+            
+                self.categories = categoies
+                
+                
+                print("类别加载完成")
+                
+                //保存在本地
+                Category.saveCategories(categoies!)
+                
+                
+            }else{
+            
+                ALinLog(error?.domain)
+            }
+            
+        }
+        
+    }
 
 	/// 重置数据
 	func reSet()
@@ -296,5 +335,17 @@ class HomeTableViewController: UITableViewController,BlurViewDelegate{
 		articles = [Article]()
 
 	}
+    
+    //MARK: 跳转到Top页面
+    func toTopAction(){
+    
+        self.navigationController?.pushViewController(TopViewController(), animated: true)
+    }
+    //原来的写法 为啥要用 oc的方法呢??? todo
+//    @objc private func toTopAction()
+//    {
+//        navigationController?.pushViewController(TopViewController(), animated: true)
+//    }
+
 
 }

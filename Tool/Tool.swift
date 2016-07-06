@@ -9,8 +9,10 @@
 import Foundation
 
 
-// 屏幕的宽度
+/// 屏幕的宽度
 let ScreenWidth  = UIScreen.mainScreen().bounds.width
-// 屏幕的高度
+/// 屏幕的高度
 let ScreenHeight = UIScreen.mainScreen().bounds.height
 
+/// 图片未加载完成前显示的图片
+let PlaceholderImage = UIImage(named: "pc_default_avatar")

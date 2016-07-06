@@ -33,7 +33,8 @@ class MainViewController: UITabBarController,UITabBarControllerDelegate {
     ///为主页添加子控件
     private func addViewController(childController:UIViewController,title:String)
     {
-       let nav = UINavigationController(rootViewController: childController)
+        //构造成自己定制的类 因为重写了返回的按钮
+       let nav = NavgationViewController(rootViewController: childController)
       
         addChildViewController(nav)
         

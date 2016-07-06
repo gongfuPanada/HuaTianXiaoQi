@@ -51,8 +51,8 @@ extension UIColor
     
     
     
-    /// 随机生成颜色
-     class func randomColor() -> UIColor{
+     /// 随机生成颜色 默认透明度为0.5
+    class func randomColor() -> UIColor{
         
         let r = arc4random_uniform(255)
         let g = arc4random_uniform(255)
@@ -60,6 +60,18 @@ extension UIColor
         
         return UIColor(r: CGFloat(r), g: CGFloat(g), b: CGFloat(b),alpha: CGFloat(0.5))
     }
+    
+    /// 随机生成颜色 参数带透明度
+    class func randomColor(alpha:CGFloat) -> UIColor{
+        
+        let r = arc4random_uniform(255)
+        let g = arc4random_uniform(255)
+        let b = arc4random_uniform(255)
+        
+        return UIColor(r: CGFloat(r), g: CGFloat(g), b: CGFloat(b),alpha: alpha)
+        
+    }
+
     
     
     

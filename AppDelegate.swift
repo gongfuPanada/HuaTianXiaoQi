@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 func ALinLog<T>(message:T,fileName: String = #file,lineNum:Int = #line,funcName:String=#function)
 {
     #if DEBUG
-        print("\((fileName as NSString).lastPathComponent)[\(lineNum)] \(funcName): \(message)")
+        print("DEBUG:{ 文件:\((fileName as NSString).lastPathComponent), 行号:\(lineNum), 方法名: \(funcName), 信息: \(message) }")
     #endif
 }
 

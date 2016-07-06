@@ -57,15 +57,28 @@ class BlurView: UIVisualEffectView,UITableViewDelegate,UITableViewDataSource {
             }
         }
     }
-
+ 
+    
+    override init(effect: UIVisualEffect?) {
+        super.init(effect: effect)
+        
+        setUpUI()
+        
+        //高斯模糊看着有点难受
+        let f = CGFloat(170)
+        backgroundColor = UIColor(r: f, g: f, b: f, alpha: 0.7)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     
     //MARK: - SetUpUI
-    private func SetUpUI(){
+    private func setUpUI(){
     
         //todo
-        
         addSubview(tableView)
         addSubview(bottomView)
         addSubview(underLine)
@@ -100,14 +113,24 @@ class BlurView: UIVisualEffectView,UITableViewDelegate,UITableViewDataSource {
     
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-        return 5
+        return self.categories?.count ?? 0
 	}
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier(CategoryCellReuseIdentifier)!
         
-        cell.textLabel?.text = "第\(indexPath.row)行"
+        cell.textLabel?.text = categories![indexPath.row].name
+        
+        cell.selectionStyle = .None
+        
+        cell.textLabel?.textAlignment = .Center
+        
+        cell.textLabel?.font = UIFont(name: "CODE LIGHT", size: 14)
+        
+       // cell.backgroundColor = UIColor.randomColor(0.1)
+        
+        cell.backgroundColor = UIColor.clearColor()
         
         return cell
     }

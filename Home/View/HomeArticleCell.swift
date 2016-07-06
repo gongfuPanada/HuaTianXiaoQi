@@ -145,8 +145,6 @@ class HomeArticleCell: UITableViewCell {
         contentView.addSubview(underline)
         contentView.addSubview(bottomView)
         
-        bottomView.setBackGroundColorForRandomColor()
-        
         contentView.snp_makeConstraints { (make) in
             make.edges.equalTo(UIEdgeInsetsMake(8, 8, 0, -8))
         }

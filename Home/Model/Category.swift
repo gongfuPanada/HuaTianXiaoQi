@@ -11,6 +11,7 @@ import Foundation
 
 ///所属类别
 class Category: NSObject {
+    
     // 专题创建时间
     var createDate : String?
     // 专题类型ID
@@ -72,7 +73,7 @@ class Category: NSObject {
         return nil
     
     }
-    
+    //todo  为什么要重写这个方法 却又不干什么 删掉会报错
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
         
     }
