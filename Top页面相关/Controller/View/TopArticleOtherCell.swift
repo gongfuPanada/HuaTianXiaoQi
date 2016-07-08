@@ -53,7 +53,7 @@ class TopArticleOtherCell: TopArticleCell {
         
         // logo的x应该是除去缩略图之后, 剩下的一半的位置
         
-        let loginView_offSet_X = (ScreenWidth - 170 - 97)/2
+        //let loginView_offSet_X = (ScreenWidth - 170 - 97)/2
         
         let loginView_offSet_Y = (170 - 97 - 40 ) / 2
         

@@ -210,8 +210,8 @@ class HomeArticleCell: UITableViewCell {
     
     }
 
-    
-    @objc private func toProfile()
+    ///头像点击事件
+     func toProfile()
     {
         clickHeadImage!(article: article)
     }
