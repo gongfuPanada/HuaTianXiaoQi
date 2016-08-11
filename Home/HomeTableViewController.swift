@@ -187,11 +187,15 @@ class HomeTableViewController: UITableViewController,BlurViewDelegate{
             let arctile = articles![indexPath.row]
             cell.article = arctile
             //头像点击事件 在定义Cell的时候将这个事件定义了一个闭包 在这块执行这个闭包
-            cell.clickHeadImage = { arctile in
-                
-                print("头像点击事件\(arctile?.author?.userName)")
-                
-                 }
+           cell.clickHeadImage = { arctile in
+
+				print("头像点击事件\(arctile?.author?.userName)")
+            
+                let columnist = ColumnistViewController();
+                columnist.auther = arctile?.author
+                self.navigationController?.pushViewController(columnist, animated: true)
+            
+			}
         }
         
         
